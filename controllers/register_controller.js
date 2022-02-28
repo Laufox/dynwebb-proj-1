@@ -2,12 +2,24 @@
 const models = require('../models');
 // Read bcrypt module for hashing passwords
 const bcrypt = require('bcrypt');
+const { matchedData, validationResult } = require('express-validator');
 
 // Method to run when creating a new user
 const register = async (req, res) => {
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            status: 'Fail',
+            data: errors.array()
+        });
+    }
+
+    const validData = matchedData(req);
+
     try {
         // Hash the password
-        req.body.password = await bcrypt.hash(req.body.password, 10);
+        validData.password = await bcrypt.hash(validData.password, 10);
     } catch (error) {
         // Throw an error if hashing failed
         res.status(500).send({
@@ -19,13 +31,15 @@ const register = async (req, res) => {
 
     try {
         // Create a new user with values sent by post request
-        const user = await new models.User(req.body).save();
+        const user = await new models.User(validData).save();
 
         // Send a successful message
         res.status(200).send({
             status: 'Success',
             data: {
-                user
+                email: validData.email,
+                firstName: validData.first_name,
+                lastName: validData.last_name
             }
         });
     } catch (error) {
