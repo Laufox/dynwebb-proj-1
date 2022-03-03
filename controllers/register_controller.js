@@ -7,6 +7,7 @@ const { matchedData, validationResult } = require('express-validator');
 // Method to run when creating a new user
 const register = async (req, res) => {
 
+    // Return an failure message if the data doesn't go through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).send({
@@ -15,6 +16,7 @@ const register = async (req, res) => {
         });
     }
 
+    // Get the request data after it has gone through the validation
     const validData = matchedData(req);
 
     try {
