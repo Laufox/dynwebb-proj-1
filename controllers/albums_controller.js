@@ -3,6 +3,21 @@ const models = require('../models');
 
 const { matchedData, validationResult } = require('express-validator');
 
+// Function to list all albums of user
+const read = async (req, res) => {
+    // Get the user and all albums it has relationship with
+    const user = await models.User.fetchById(req.user.id, { withRelated: ['albums'] });
+
+    // Return a successful message and all albums belonging to user
+    res.status(200).send({
+        status: 'success',
+        data: {
+            data: user.related('albums')
+        }
+    })
+}
+
+// Function to create new albums
 const create = async (req, res) => {
     // Return an failure message if the data doesn't go through the validation
     const errors = validationResult(req);
@@ -27,7 +42,11 @@ const create = async (req, res) => {
         // Inform the user that the album was created
         res.status(200).send({
             status: "success",
-            data: `Created album ${validData.title}`
+            data: {
+                "title": validData.title,
+                "user_id": validData.user_id,
+                "id": newAlbum.id
+            }
         });
     } catch (error) {
         // Throw an error if creating an album failed
@@ -41,6 +60,8 @@ const create = async (req, res) => {
     
 };
 
+// Export the modules
 module.exports = {
+    read,
     create
 };
