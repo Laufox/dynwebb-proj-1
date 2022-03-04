@@ -3,9 +3,11 @@ const { body } = require('express-validator');
 // Read the models
 const models = require('../models');
 
-// Validation rules for creating a new album
+// Validation rules for creating a new photo
 const createRules = [
-    body('title').exists().isString().isLength({min: 3})
+    body('title').exists().isString().isLength({min: 3}),
+    body('url').exists().isString().isURL(),
+    body('comment').optional().isString().isLength({min: 3})
 ];
 
 // Export the modules

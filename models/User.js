@@ -5,6 +5,9 @@ module.exports = (bookshelf) => {
         // Define relationship with table albums
         albums() {
             return this.hasMany('Album');
+        },
+        photos() {
+            return this.hasMany('Photo');
         }
     }, {
         // Function to get a specific user with a relationship
