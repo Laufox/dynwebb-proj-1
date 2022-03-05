@@ -17,7 +17,11 @@ router.post('/', albumValidation.createRules, albumsController.create);
 
 // Direct PUT /:albumId traffic to the update method in albumsController file
 // using updateRules method in albumsValidation file as validation middleware
-router.put('/:albumId', albumValidation.updateRules, albumsController.update)
+router.put('/:albumId', albumValidation.updateRules, albumsController.update);
+
+// Direct POST /:albumId/photo traffic to the addPhoto method in albumsController file
+// using addPhotoRules method in albumsValidation file as validation middleware
+router.post('/:albumId/photo', albumValidation.addPhotoRules, albumsController.addPhoto);
 
 // Export router for use in other files
 module.exports = router

@@ -151,10 +151,47 @@ const update = async (req, res) => {
 
 }
 
+const addPhoto = async (req, res) => {
+    // Return a failure message if the data didn't went through the validation
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            status: 'fail',
+            data: errors.array()
+        });
+    }
+
+    // Get the request data after it has gone through the validation
+    const validData = matchedData(req);
+
+    // Get the requested album and it's photos
+    const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
+
+    try {
+        // Try to attach given photo to album list
+        await album.photos().attach(validData.photo_id);
+
+        // Send the user a successful message
+        res.send({
+            status: 'succes',
+            data: null
+        });
+
+    } catch (error) {
+        // Return an error message if the database could not go through with the request
+        res.status(500).send({
+			status: 'error',
+			message: 'Database error when adding the photo',
+		});
+		throw error;
+    }
+}
+
 // Export the modules
 module.exports = {
     read,
     readOne,
     create,
-    update
+    update,
+    addPhoto
 };
