@@ -10,7 +10,15 @@ const createRules = [
     body('comment').optional().isString().isLength({min: 3})
 ];
 
+// Validation rules for updating a photo
+const updateRules = [
+    body('title').optional().isString().isLength({min: 3}),
+    body('url').optional().isString().isURL(),
+    body('comment').optional().isString().isLength({min: 3})
+]
+
 // Export the modules
 module.exports = {
-    createRules
+    createRules,
+    updateRules
 }

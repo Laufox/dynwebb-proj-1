@@ -3,6 +3,7 @@ const models = require('../models');
 
 const { matchedData, validationResult } = require('express-validator');
 
+// Function to read all photos that belongs to the user
 const read = async (req, res) => {
     // Get the user and all albums it has relationship with
     const user = await models.User.fetchById(req.user.id, { withRelated: ['photos'] });
@@ -13,9 +14,10 @@ const read = async (req, res) => {
         data: {
             data: user.related('photos')
         }
-    })
+    });
 }
 
+// Function to read a specific photo that belongs to a user
 const readOne = async (req, res) => {
     
     // Try to get the photo with the given param
@@ -46,7 +48,7 @@ const readOne = async (req, res) => {
             "url": photo.attributes.url,
             "comment": photo.attributes.comment
         }
-    })
+    });
     
 }
 
@@ -93,9 +95,71 @@ const create = async (req, res) => {
     }
 }
 
+// Function to update an existing photo
+const update = async (req, res) => {
+    // Try to get the photo with the given param
+    let photo = await new models.Photo({id: req.params.photoId}).fetch({require: false});
+
+    // If not photo was found, return and inform the user
+    if (!photo) {
+        return res.status(401).send({
+            status: 'fail',
+            data: 'There is no such photo'
+        });
+    }
+
+    // If the photo does not belong to the user, return and inform the user
+    if (photo.attributes.user_id !== req.user.id) {
+        return res.status(403).send({
+            status: 'fail',
+            data: 'That is not your photo!'
+        });
+    }
+
+    // Return an failure message if the data doesn't go through the validation
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.status(422).send({
+            status: 'fail',
+            data: errors.array()
+        });
+    }
+
+    // Get the request data after it has gone through the validation
+    const validData = matchedData(req);
+
+    try {
+        
+        // Update the database row with the new content
+        photo = await photo.save(validData);
+
+        // Send a successful message to the user, aswell as the photo attributes
+        res.status(200).send({
+            status: 'success',
+            data: {
+                "id": photo.attributes.id,
+                "title": photo.attributes.title,
+                "url": photo.attributes.url,
+                "comment": photo.attributes.comment,
+                "user_id": photo.attributes.user_id
+            }
+        });
+
+    } catch (error) {
+        // Throw an error if updating a photo failed
+        res.status(500).send({
+            status: 'Error',
+            message: 'Issues when updating the photo'
+        });
+        throw error;
+    }
+
+}
+
 // Export the modules
 module.exports = {
     read,
     readOne,
-    create
+    create,
+    update
 }
