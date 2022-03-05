@@ -8,7 +8,12 @@ const createRules = [
     body('title').exists().isString().isLength({min: 3})
 ];
 
+const updateRules = [
+    body('title').exists().isString().isLength({min: 3})
+];
+
 // Export the modules
 module.exports = {
-    createRules
+    createRules,
+    updateRules
 }

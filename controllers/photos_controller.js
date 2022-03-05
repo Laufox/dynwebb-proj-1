@@ -100,7 +100,7 @@ const update = async (req, res) => {
     // Try to get the photo with the given param
     let photo = await new models.Photo({id: req.params.photoId}).fetch({require: false});
 
-    // If not photo was found, return and inform the user
+    // If no photo was found, return and inform the user
     if (!photo) {
         return res.status(401).send({
             status: 'fail',
@@ -116,7 +116,7 @@ const update = async (req, res) => {
         });
     }
 
-    // Return an failure message if the data doesn't go through the validation
+    // Return a failure message if the data doesn't go through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
         return res.status(422).send({
@@ -146,7 +146,7 @@ const update = async (req, res) => {
         });
 
     } catch (error) {
-        // Throw an error if updating a photo failed
+        // Throw an error if updating the photo failed
         res.status(500).send({
             status: 'Error',
             message: 'Issues when updating the photo'
