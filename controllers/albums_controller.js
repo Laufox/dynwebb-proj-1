@@ -20,8 +20,8 @@ const read = async (req, res) => {
 // Function to read a specific album that belongs to a user
 const readOne = async (req, res) => {
 
-    // Try to get the photo with the given param
-    const album = await new models.Album({id: req.params.albumId}).fetch({require: false});
+    // Try to get the album with the given param, including it's photos
+    const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
 
     // If not photo was not found, return and inform the user
     if (!album) {
@@ -39,12 +39,13 @@ const readOne = async (req, res) => {
         });
     }
 
-    // Send a successful message to the user, aswell as the album attributes
+    // Send a successful message to the user, aswell as the album attributes and it's photos
     res.status(200).send({
         status: 'success',
         data: {
             "id": album.attributes.id,
-            "title": album.attributes.title
+            "title": album.attributes.title,
+            "photos": album.related('photos')
         }
     });
 }
