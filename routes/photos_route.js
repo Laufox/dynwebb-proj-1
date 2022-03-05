@@ -8,7 +8,7 @@ const photosController = require('../controllers/photos_controller');
 // Direct GET / traffic to the read method in photosController file
 router.get('/', photosController.read);
 
-// Direct GET /:photoId traffic to the read method in photosController file
+// Direct GET /:photoId traffic to the readOne method in photosController file
 router.get('/:photoId', photosController.readOne);
 
 // Direct POST / traffic to the create method in photosController file,

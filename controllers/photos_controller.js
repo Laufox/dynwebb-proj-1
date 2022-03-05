@@ -23,12 +23,12 @@ const readOne = async (req, res) => {
     // Try to get the photo with the given param
     const photo = await new models.Photo({id: req.params.photoId}).fetch({require: false});
 
-    // If not photo was found, return and inform the user
+    // If not photo was not found, return and inform the user
     if (!photo) {
         return res.status(401).send({
             status: 'fail',
             data: 'There is no such photo'
-        })
+        });
     }
     
     // If the photo does not belong to the user, return and inform the user
@@ -36,7 +36,7 @@ const readOne = async (req, res) => {
         return res.status(403).send({
             status: 'fail',
             data: 'That is not your photo!'
-        })
+        });
     }
 
     // Send a successful message to the user, aswell as the photo attributes

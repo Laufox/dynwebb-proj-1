@@ -17,6 +17,38 @@ const read = async (req, res) => {
     })
 }
 
+// Function to read a specific album that belongs to a user
+const readOne = async (req, res) => {
+
+    // Try to get the photo with the given param
+    const album = await new models.Album({id: req.params.albumId}).fetch({require: false});
+
+    // If not photo was not found, return and inform the user
+    if (!album) {
+        return res.status(401).send({
+            status: 'fail',
+            data: 'There is no such album'
+        });
+    }
+
+    // If the photo does not belong to the user, return and inform the user
+    if (album.attributes.user_id !== req.user.id) {
+        return res.status(403).send({
+            status: 'fail',
+            data: 'That is not your album!'
+        });
+    }
+
+    // Send a successful message to the user, aswell as the album attributes
+    res.status(200).send({
+        status: 'success',
+        data: {
+            "id": album.attributes.id,
+            "title": album.attributes.title
+        }
+    });
+}
+
 // Function to create new albums
 const create = async (req, res) => {
     // Return an failure message if the data doesn't go through the validation
@@ -63,5 +95,6 @@ const create = async (req, res) => {
 // Export the modules
 module.exports = {
     read,
+    readOne,
     create
 };
