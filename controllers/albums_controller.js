@@ -29,7 +29,7 @@ const read = async (req, res) => {
 const readOne = async (req, res) => {
 
     // If the id parameter is missing, or has an unexpeted value, return and inform the user
-    if (!req.params.photoId || isNaN(req.params.photoId) || req.params.photoId < 0) {
+    if (!req.params.albumId || isNaN(req.params.albumId) || req.params.albumId < 0) {
         return res.status(400).send({
             status: 'fail',
             data: 'Invalid params'
@@ -193,14 +193,23 @@ const addPhoto = async (req, res) => {
     // Get the photo to add to album
     const photo = await new models.Photo({ id: validData.photo_id }).fetch({ require: false });
 
-    // Get the requested album and it's photos
-    const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
+    let album;
+
+    try {
+        // Get the requested album and it's photos
+        album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
+    } catch (error) {
+        return res.status(404).send({
+            status: 'Error',
+            message: 'No such album'
+        })
+    }
 
     // If the phot and album does not have the same owner, return and inform the user
-    if (photo.attributes.user_id !== album.attributes.user_id) {
+    if (photo.attributes.user_id !== album.attributes.user_id || album.attributes.user_id !== req.user.id) {
         return res.status(403).send({
             status: 'fail',
-            data: 'That photo is not yours!'
+            data: 'That photo and/or album is not yours!'
         });
     }
 
