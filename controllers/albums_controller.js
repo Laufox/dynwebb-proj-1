@@ -8,6 +8,14 @@ const read = async (req, res) => {
     // Get the user and all albums it has relationship with
     const user = await models.User.fetchById(req.user.id, { withRelated: ['albums'] });
 
+    // If the user has no albums, return and inform the user
+    if (user.related('albums').length <= 0) {
+        return res.status(400).send({
+            status: 'fail',
+            data: 'You have no albums yet'
+        });
+    }
+
     // Return a successful message and all albums belonging to user
     res.status(200).send({
         status: 'success',
@@ -19,6 +27,14 @@ const read = async (req, res) => {
 
 // Function to read a specific album that belongs to a user
 const readOne = async (req, res) => {
+
+    // If the id parameter is missing, or has an unexpeted value, return and inform the user
+    if (!req.params.photoId || isNaN(req.params.photoId) || req.params.photoId < 0) {
+        return res.status(400).send({
+            status: 'fail',
+            data: 'Invalid params'
+        });
+    }
 
     // Try to get the album with the given param, including it's photos
     const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
