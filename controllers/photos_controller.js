@@ -113,6 +113,15 @@ const create = async (req, res) => {
 
 // Function to update an existing photo
 const update = async (req, res) => {
+
+    // If the id parameter is missing, or has an unexpeted value, return and inform the user
+    if (!req.params.photoId || isNaN(req.params.photoId) || req.params.photoId < 0) {
+        return res.status(400).send({
+            status: 'fail',
+            data: 'Invalid params'
+        });
+    }
+    
     // Try to get the photo with the given param
     let photo = await new models.Photo({id: req.params.photoId}).fetch({require: false});
 
