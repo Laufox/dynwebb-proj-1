@@ -111,7 +111,7 @@ const create = async (req, res) => {
 
 // Function to update an existing album
 const update = async (req, res) => {
-    
+
     // If the id parameter is missing, or has an unexpeted value, return and inform the user
     if (!req.params.photoId || isNaN(req.params.photoId) || req.params.photoId < 0) {
         return res.status(400).send({
@@ -190,8 +190,19 @@ const addPhoto = async (req, res) => {
     // Get the request data after it has gone through the validation
     const validData = matchedData(req);
 
+    // Get the photo to add to album
+    const photo = await new models.Photo({ id: validData.photo_id }).fetch({ require: false });
+
     // Get the requested album and it's photos
     const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
+
+    // If the phot and album does not have the same owner, return and inform the user
+    if (photo.attributes.user_id !== album.attributes.user_id) {
+        return res.status(403).send({
+            status: 'fail',
+            data: 'That photo is not yours!'
+        });
+    }
 
     try {
         // Try to attach given photo to album list
