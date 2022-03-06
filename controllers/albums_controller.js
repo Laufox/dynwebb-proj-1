@@ -113,7 +113,7 @@ const create = async (req, res) => {
 const update = async (req, res) => {
 
     // If the id parameter is missing, or has an unexpeted value, return and inform the user
-    if (!req.params.photoId || isNaN(req.params.photoId) || req.params.photoId < 0) {
+    if (!req.params.albumId || isNaN(req.params.albumId) || req.params.albumId < 0) {
         return res.status(400).send({
             status: 'fail',
             data: 'Invalid params'
@@ -178,6 +178,14 @@ const update = async (req, res) => {
 }
 
 const addPhoto = async (req, res) => {
+    // If the id parameter is missing, or has an unexpeted value, return and inform the user
+    if (!req.params.albumId || isNaN(req.params.albumId) || req.params.albumId < 0) {
+        return res.status(400).send({
+            status: 'fail',
+            data: 'Invalid params'
+        });
+    }
+
     // Return a failure message if the data didn't went through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -210,6 +218,15 @@ const addPhoto = async (req, res) => {
         return res.status(403).send({
             status: 'fail',
             data: 'That photo and/or album is not yours!'
+        });
+    }
+
+    const photos = album.related('photos');
+
+    if ( photos.find( photo => photo.id === validData.photo_id ) ) {
+        return res.status(400).send({
+            status: 'fail',
+            data: 'Photo already added to this album'
         });
     }
 
