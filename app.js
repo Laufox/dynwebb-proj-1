@@ -17,6 +17,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(require('./routes'));
 
 // Starting the server up on port 3000
-app.listen(process.env.port || '3000', () => {
+app.listen(process.env.PORT, () => {
     debug("Photo app server started at port 3000");
 });
