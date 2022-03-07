@@ -7,6 +7,11 @@ const userValidationRules = require('../validation/user_validation');
 // Read authentication middleware
 const auth = require('../middlewares/auth');
 
+/* GET / */
+router.get('/', (req, res, next) => {
+	res.send({ success: true, data: { msg: 'oh, hiiii' }});
+});
+
 router.use('/photos', auth.basic, require('./photos_route'));
 router.use('/albums', auth.basic, require('./albums_route'));
 
