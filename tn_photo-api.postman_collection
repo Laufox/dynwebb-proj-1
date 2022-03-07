@@ -1,0 +1,1193 @@
+{
+	"info": {
+		"_postman_id": "c7076d6e-8d77-406e-b5e0-2840daa9509c",
+		"name": "Photo-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "POST /register Bill Gates",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"bill_gates@microsoft.com\",\r\n    \"password\": \"windows95\",\r\n    \"first_name\": \"Bill\",\r\n    \"last_name\": \"Gates\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nameless-journey-97986.herokuapp.com/register",
+							"protocol": "https",
+							"host": [
+								"nameless-journey-97986",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /register Steve Wozniak",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"woz@apple.inc\",\r\n    \"password\": \"macintosh\",\r\n    \"first_name\": \"Steve\",\r\n    \"last_name\": \"Wozniak\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nameless-journey-97986.herokuapp.com/register",
+							"protocol": "https",
+							"host": [
+								"nameless-journey-97986",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "POST /register Linus Torvalds",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"email\": \"linus_torvalds@git.com\",\r\n    \"password\": \"ubuntu\",\r\n    \"first_name\": \"Linus\",\r\n    \"last_name\": \"Torvalds\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "https://nameless-journey-97986.herokuapp.com/register",
+							"protocol": "https",
+							"host": [
+								"nameless-journey-97986",
+								"herokuapp",
+								"com"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Albums",
+			"item": [
+				{
+					"name": "Bill Gates",
+					"item": [
+						{
+							"name": "POST /albums Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Bill Album #1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums/5 Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/5",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /album/5 Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Bill album#1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/5",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"5"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /albums/5/photo Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"photo_id\": 6\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/5/photo",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"5",
+										"photo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Steve Wozniak",
+					"item": [
+						{
+							"name": "POST /albums Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Steve album #2\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums/4 Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/4",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /album/4 Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Steve album #1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/4",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"4"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "POST /albums/4/photo Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"photo_id\": 7\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/4/photo",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"4",
+										"photo"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Linus Torvalds",
+					"item": [
+						{
+							"name": "POST /albums Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Linus album #1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /albums/6 Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/6",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /album/6 Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"Linus album #1\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/albums/6",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"albums",
+										"6"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Photos",
+			"item": [
+				{
+					"name": "Bill Gates",
+					"item": [
+						{
+							"name": "POST /photos Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"300 Multiple choices\",\r\n    \"url\": \"https://http.cat/300\",\r\n    \"comment\": \"Multiple choices\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos/6 Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos/6",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /photos/6 Bill Gates",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "windows95",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "bill_gates@microsoft.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"207 - Multi-Status\",\r\n    \"url\": \"https://http.cat/207\",\r\n    \"comment\": \"Multi-Status\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos/19",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos",
+										"19"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Steve Wozniak",
+					"item": [
+						{
+							"name": "POST /photos Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"203 - non-authoritative information\",\r\n    \"url\": \"https://http.cat/203\",\r\n    \"comment\": \"Non-authoritative information\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /photos/7 Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"101 Switching protocols\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos/7",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos",
+										"7"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos/7 Steve Wozniak",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "username",
+											"value": "woz@apple.inc",
+											"type": "string"
+										},
+										{
+											"key": "password",
+											"value": "macintosh",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos/7",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos",
+										"7"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Linus Torvalds",
+					"item": [
+						{
+							"name": "POST /photos Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"202 - accepted\",\r\n    \"url\": \"https://http.cat/202\",\r\n    \"comment\": \"Accepted\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "GET /photos/9 Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos/9",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos",
+										"9"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "PUT /photos/9 Linus Torvalds",
+							"request": {
+								"auth": {
+									"type": "basic",
+									"basic": [
+										{
+											"key": "password",
+											"value": "ubuntu",
+											"type": "string"
+										},
+										{
+											"key": "username",
+											"value": "linus_torvalds@git.com",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"title\": \"200 - ok\",\r\n    \"url\": \"https://http.cat/200\",\r\n    \"comment\": \"Ok200\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "https://nameless-journey-97986.herokuapp.com/photos/9",
+									"protocol": "https",
+									"host": [
+										"nameless-journey-97986",
+										"herokuapp",
+										"com"
+									],
+									"path": [
+										"photos",
+										"9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}
