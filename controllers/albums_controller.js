@@ -213,7 +213,7 @@ const addPhoto = async (req, res) => {
         })
     }
 
-    // If the phot and album does not have the same owner, return and inform the user
+    // If the photo and album does not the correct owner, return and inform the user
     if (photo.attributes.user_id !== album.attributes.user_id || album.attributes.user_id !== req.user.id) {
         return res.status(403).send({
             status: 'fail',
