@@ -37,9 +37,9 @@ const readOne = async (req, res) => {
     }
 
     // Try to get the album with the given param, including it's photos
-    const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
+    const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos'], require: false});
 
-    // If not photo was not found, return and inform the user
+    // If not album was not found, return and inform the user
     if (!album) {
         return res.status(401).send({
             status: 'fail',
@@ -47,7 +47,7 @@ const readOne = async (req, res) => {
         });
     }
 
-    // If the photo does not belong to the user, return and inform the user
+    // If the album does not belong to the user, return and inform the user
     if (album.attributes.user_id !== req.user.id) {
         return res.status(403).send({
             status: 'fail',
