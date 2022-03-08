@@ -212,36 +212,34 @@ const addPhoto = async (req, res) => {
     // Get the photo to add to album
     const photo = await new models.Photo({ id: validData.photo_id }).fetch({ require: false });
 
-    let album;
-
     try {
         // Get the requested album and it's photos
-        album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos']});
-    } catch (error) {
-        return res.status(404).send({
-            status: 'Error',
-            message: 'No such album'
-        })
-    }
+        const album = await models.Album.fetchById(req.params.albumId, {withRelated: ['photos'], require: false});
 
-    // If the photo and album does not the correct owner, return and inform the user
-    if (photo.attributes.user_id !== album.attributes.user_id || album.attributes.user_id !== req.user.id) {
-        return res.status(403).send({
-            status: 'fail',
-            data: 'That photo and/or album is not yours!'
-        });
-    }
+        // If the album was not found, return and inform the user
+        if (!album) {
+            return res.status(404).send({
+                status: 'fail',
+                message: 'No such album exists'
+            })
+        }
 
-    const photos = album.related('photos');
+        // If the photo and/or album does not have the correct owner, return and inform the user
+        if (photo.attributes.user_id !== album.attributes.user_id || album.attributes.user_id !== req.user.id) {
+            return res.status(403).send({
+                status: 'fail',
+                data: 'That photo and/or album is not yours!'
+            });
+        }
 
-    if ( photos.find( photo => photo.id === validData.photo_id ) ) {
-        return res.status(400).send({
-            status: 'fail',
-            data: 'Photo already added to this album'
-        });
-    }
+        // If the photo is already added to the album, return and inform the user
+        if ( album.related('photos').find( photo => photo.id === validData.photo_id ) ) {
+            return res.status(400).send({
+                status: 'fail',
+                data: 'Photo already added to this album'
+            });
+        }
 
-    try {
         // Try to attach given photo to album list
         await album.photos().attach(validData.photo_id);
 
@@ -259,6 +257,7 @@ const addPhoto = async (req, res) => {
 		});
 		throw error;
     }
+
 }
 
 // Export the modules
