@@ -11,7 +11,7 @@ const register = async (req, res) => {
     // Return an failure message if the data doesn't go through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).send({
+        return res.status(400).send({
             status: 'Fail',
             data: errors.array()
         });
@@ -37,7 +37,7 @@ const register = async (req, res) => {
         await new models.User(validData).save();
 
         // Send a successful message
-        res.status(200).send({
+        res.status(201).send({
             status: 'Success',
             data: {
                 email: validData.email,

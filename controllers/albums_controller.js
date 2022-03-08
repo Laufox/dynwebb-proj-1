@@ -11,7 +11,7 @@ const read = async (req, res) => {
 
     // If the user has no albums, return and inform the user
     if (user.related('albums').length <= 0) {
-        return res.status(400).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'You have no albums yet'
         });
@@ -42,7 +42,7 @@ const readOne = async (req, res) => {
 
     // If not album was not found, return and inform the user
     if (!album) {
-        return res.status(401).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'There is no such album'
         });
@@ -83,7 +83,7 @@ const create = async (req, res) => {
     // Return an failure message if the data doesn't go through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).send({
+        return res.status(400).send({
             status: 'Fail',
             data: errors.array()
         });
@@ -101,7 +101,7 @@ const create = async (req, res) => {
         const newAlbum = await new models.Album(validData).save();
 
         // Inform the user that the album was created
-        res.status(200).send({
+        res.status(201).send({
             status: "success",
             data: {
                 "title": validData.title,
@@ -137,7 +137,7 @@ const update = async (req, res) => {
 
     // If no album was found, return and inform the user
     if (!album) {
-        return res.status(401).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'There is not such album'
         });
@@ -154,7 +154,7 @@ const update = async (req, res) => {
     // Return a failure message if the data didn't went through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).send({
+        return res.status(400).send({
             status: 'fail',
             data: errors.array()
         });
@@ -201,7 +201,7 @@ const addPhoto = async (req, res) => {
     // Return a failure message if the data didn't went through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).send({
+        return res.status(400).send({
             status: 'fail',
             data: errors.array()
         });
@@ -245,7 +245,7 @@ const addPhoto = async (req, res) => {
         await album.photos().attach(validData.photo_id);
 
         // Send the user a successful message
-        res.send({
+        res.status(201).send({
             status: 'succes',
             data: null
         });

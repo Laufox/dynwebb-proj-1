@@ -10,7 +10,7 @@ const basic = async (req, res, next) => {
     if (!req.headers.authorization) {
         return res.status(401).send({
             status: 'fail',
-            data: 'You need to idetify yourself'
+            data: 'You need to identify yourself'
         });
     }
 
@@ -32,7 +32,7 @@ const basic = async (req, res, next) => {
     const user = await new models.User({ email }).fetch({ require: false });
     // If user does not exist, return with a failure message
     if (!user) {
-        return res.status(401).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'User does not exist'
         });

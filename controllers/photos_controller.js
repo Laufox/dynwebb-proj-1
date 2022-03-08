@@ -11,7 +11,7 @@ const read = async (req, res) => {
 
     // If the user has no photos, return and inform the user
     if (user.related('photos').length <= 0) {
-        return res.status(400).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'You have no photos yet'
         });
@@ -52,7 +52,7 @@ const readOne = async (req, res) => {
 
     // If not photo was not found, return and inform the user
     if (!photo) {
-        return res.status(401).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'There is no such photo'
         });
@@ -85,7 +85,7 @@ const create = async (req, res) => {
     // Return an failure message if the data doesn't go through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).send({
+        return res.status(400).send({
             status: 'fail',
             data: errors.array()
         });
@@ -100,8 +100,8 @@ const create = async (req, res) => {
         // Try to create a new photo 
         const newPhoto = await new models.Photo(validData).save();
 
-        // Inform the user that the album was created
-        res.status(200).send({
+        // Inform the user that the photo was created
+        res.status(201).send({
             status: 'success',
             data: {
                 "title": validData.title,
@@ -138,7 +138,7 @@ const update = async (req, res) => {
 
     // If no photo was found, return and inform the user
     if (!photo) {
-        return res.status(401).send({
+        return res.status(404).send({
             status: 'fail',
             data: 'There is no such photo'
         });
@@ -155,7 +155,7 @@ const update = async (req, res) => {
     // Return a failure message if the data doesn't go through the validation
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(422).send({
+        return res.status(400).send({
             status: 'fail',
             data: errors.array()
         });
