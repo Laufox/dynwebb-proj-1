@@ -1,6 +1,7 @@
 // Read models
 const models = require('../models');
 
+// Read methods from express-validator
 const { matchedData, validationResult } = require('express-validator');
 
 // Function to read all photos that belongs to the user

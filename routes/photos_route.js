@@ -11,12 +11,16 @@ router.get('/', photosController.read);
 // Direct GET /:photoId traffic to the readOne method in photosController file
 router.get('/:photoId', photosController.readOne);
 
-// Direct POST / traffic to the create method in photosController file,
-// using createRules method in photosValidation file as validation middleware
+/**
+ *  Direct POST / traffic to the create method in photosController file,
+ *  using createRules method in photosValidation file as validation middleware
+ */
 router.post('/', photosValidation.createRules, photosController.create);
 
-// Direct PUT /:photoId traffic to the update method in photosController file
-// using updateRules method in photosValidation file as validation middleware
+/**
+ *  Direct PUT /:photoId traffic to the update method in photosController file,
+ *  using updateRules method in photosValidation file as validation middleware
+ */
 router.put('/:photoId', photosValidation.updateRules, photosController.update);
 
 // Export router for use in other files

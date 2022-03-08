@@ -2,6 +2,7 @@
 const models = require('../models');
 // Read bcrypt module for hashing passwords
 const bcrypt = require('bcrypt');
+// Read methods from express-validator
 const { matchedData, validationResult } = require('express-validator');
 
 // Method to run when creating a new user
@@ -33,7 +34,7 @@ const register = async (req, res) => {
 
     try {
         // Create a new user with values sent by post request
-        const user = await new models.User(validData).save();
+        await new models.User(validData).save();
 
         // Send a successful message
         res.status(200).send({

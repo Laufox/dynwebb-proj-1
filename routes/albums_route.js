@@ -11,16 +11,22 @@ router.get('/', albumsController.read);
 // Direct GET /:albumId traffic to the readOne method in photosController file
 router.get('/:albumId', albumsController.readOne);
 
-// Direct POST / traffic to the create method in albumsController file
-// using createRules method in albumsValidation file as validation middleware
+/**
+ *  Direct POST / traffic to the create method in albumsController file,
+ *  using createRules method in albumsValidation file as validation middleware
+*/
 router.post('/', albumValidation.createRules, albumsController.create);
 
-// Direct PUT /:albumId traffic to the update method in albumsController file
-// using updateRules method in albumsValidation file as validation middleware
+/**
+ *  Direct PUT /:albumId traffic to the update method in albumsController file,
+ *  using updateRules method in albumsValidation file as validation middleware
+ */
 router.put('/:albumId', albumValidation.updateRules, albumsController.update);
 
-// Direct POST /:albumId/photo traffic to the addPhoto method in albumsController file
-// using addPhotoRules method in albumsValidation file as validation middleware
+/**
+ *  Direct POST /:albumId/photo traffic to the addPhoto method in albumsController file,
+ *  using addPhotoRules method in albumsValidation file as validation middleware
+ */
 router.post('/:albumId/photo', albumValidation.addPhotoRules, albumsController.addPhoto);
 
 // Export router for use in other files

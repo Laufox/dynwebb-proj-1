@@ -1,7 +1,5 @@
 // Read the body function from express-validator
 const { body } = require('express-validator');
-// Read the models
-const models = require('../models');
 
 // Validation rules for creating a new photo
 const createRules = [

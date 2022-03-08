@@ -2,6 +2,7 @@
 module.exports = (bookshelf) => {
     return bookshelf.model('Album', {
         tableName: 'albums',
+        // Define relationships for table
         user() {
             return this.belongsTo('User');
         },
