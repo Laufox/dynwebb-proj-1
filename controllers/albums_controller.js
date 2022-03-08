@@ -55,13 +55,24 @@ const readOne = async (req, res) => {
         });
     }
 
+    // Loop through album photos and pick the attributes to use on each one
+    const photos = album.related('photos').toJSON().map( (photo) => {
+        return {
+            id: photo.id, 
+            title: photo.title, 
+            url: photo.url, 
+            comment: photo.comment,
+            user_id: photo.user_id
+        };
+    } );
+
     // Send a successful message to the user, aswell as the album attributes and it's photos
     res.status(200).send({
         status: 'success',
         data: {
             "id": album.attributes.id,
             "title": album.attributes.title,
-            "photos": album.related('photos')
+            "photos": photos
         }
     });
 }

@@ -16,11 +16,21 @@ const read = async (req, res) => {
         });
     }
 
+    // Loop through user photos and pick the attributes to use on each one
+    const photos = user.related('photos').toJSON().map( (photo) => {
+        return {
+            id: photo.id, 
+            title: photo.title, 
+            url: photo.url, 
+            comment: photo.comment
+        };
+    } );
+
     // Return a successful message and all albums belonging to user
     res.status(200).send({
         status: 'success',
         data: {
-            data: user.related('photos')
+            photos
         }
     });
 }
