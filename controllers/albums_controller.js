@@ -9,14 +9,6 @@ const read = async (req, res) => {
     // Get the user and all albums it has relationship with
     const user = await models.User.fetchById(req.user.id, { withRelated: ['albums'] });
 
-    // If the user has no albums, return and inform the user
-    if (user.related('albums').length <= 0) {
-        return res.status(404).send({
-            status: 'fail',
-            data: 'You have no albums yet'
-        });
-    }
-
     // Return a successful message and all albums belonging to user
     res.status(200).send({
         status: 'success',

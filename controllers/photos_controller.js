@@ -9,14 +9,6 @@ const read = async (req, res) => {
     // Get the user and all albums it has relationship with
     const user = await models.User.fetchById(req.user.id, { withRelated: ['photos'] });
 
-    // If the user has no photos, return and inform the user
-    if (user.related('photos').length <= 0) {
-        return res.status(404).send({
-            status: 'fail',
-            data: 'You have no photos yet'
-        });
-    }
-
     // Loop through user photos and pick the attributes to use on each one
     const photos = user.related('photos').toJSON().map( (photo) => {
         return {
