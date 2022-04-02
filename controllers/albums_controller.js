@@ -12,9 +12,8 @@ const read = async (req, res) => {
     // Return a successful message and all albums belonging to user
     res.status(200).send({
         status: 'success',
-        data: {
-            data: user.related('albums')
-        }
+        data: user.related('albums'),
+        
     })
 }
 
