@@ -32,9 +32,9 @@ const basic = async (req, res, next) => {
     const user = await new models.User({ email }).fetch({ require: false });
     // If user does not exist, return with a failure message
     if (!user) {
-        return res.status(404).send({
+        return res.status(401).send({
             status: 'fail',
-            data: 'User does not exist'
+            data: 'Wrong credentials'
         });
     }
 
@@ -44,7 +44,7 @@ const basic = async (req, res, next) => {
     if (!result) {
         return res.status(401).send({
             status: 'fail',
-            data: 'Password is wrong'
+            data: 'Wrong credentials'
         });
     }
 
